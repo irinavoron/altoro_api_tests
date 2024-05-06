@@ -1,6 +1,6 @@
 from selene import browser, have
 
-from qa_guru_diploma_automationexercise_api.utils.api_methods import successful_login, get_authorization_token
+from qa_guru_diploma_altoro_api.utils.api_methods import successful_login, get_authorization_token
 
 
 def test_logout(browser_management):

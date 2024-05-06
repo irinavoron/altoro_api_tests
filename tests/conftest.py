@@ -1,7 +1,7 @@
 import pytest
 from selene import browser
 
-from qa_guru_diploma_automationexercise_api.utils.api_methods import api_request
+from qa_guru_diploma_altoro_api.utils.api_methods import api_request
 
 @pytest.fixture(scope='session')
 def browser_management():
