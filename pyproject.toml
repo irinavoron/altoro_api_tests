@@ -8,10 +8,12 @@ packages = [{include = "qa"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
+requests = "^2.31.0"
+jsonschema = "^4.22.0"
+pytest = "^8.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.2.0"
 allure-pytest = "^2.13.5"
 
 [build-system]
