@@ -17,35 +17,38 @@ def load_schema(schema_name):
 
 def api_request(endpoint, method, data=None, params=None, **kwargs):
     url = base_url + endpoint
-    with allure.step("API request"):
-        response = requests.request(method, url, data=data, params=params, **kwargs)
-        # response_attaching(response)
-        return response
+    response = requests.request(method, url, data=data, params=params, **kwargs)
+    # response_attaching(response)
+
+    return response
 
 
 def successful_login():
-    response = api_request(
-        endpoint='/login',
-        method='POST',
-        json={'username': username, 'password': password}
-    )
+    with allure.step('Login via API'):
+        response = api_request(
+            endpoint='/login',
+            method='POST',
+            json={'username': username, 'password': password}
+        )
 
-    return response
+        return response
 
 
 def get_authorization_token():
     response = successful_login()
     response_body = response.json()
-    auth_token = response_body['Authorization']
+    with allure.step('Get authorization token from response body'):
+        auth_token = response_body['Authorization']
 
     return auth_token
 
 
 def unsuccessful_login():
-    response = api_request(
-        endpoint='/login',
-        method='POST',
-        json={'username': invalid_user_name, 'password': password}
-    )
+    with allure.step('Try to login with invalid credentials'):
+        response = api_request(
+            endpoint='/login',
+            method='POST',
+            json={'username': invalid_user_name, 'password': password}
+        )
 
-    return response
+        return response
