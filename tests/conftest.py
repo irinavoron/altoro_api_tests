@@ -1,18 +1,15 @@
+import os
+
 import pytest
 from selene import browser
+from dotenv import load_dotenv
 
-from qa_guru_diploma_altoro_api.utils.api_methods import api_request
 
 @pytest.fixture(scope='session')
 def browser_management():
-    browser.config.base_url = 'https://demo.testfire.net'
+    load_dotenv()
+    browser.config.base_url = os.getenv('BASE_URL')
 
-
-# @pytest.fixture
-# def base_url():
-#     base_url = 'https://automationexercise.com'
-#
-#     return base_url
 
 
 

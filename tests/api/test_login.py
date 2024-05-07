@@ -1,9 +1,7 @@
 import json
 import os
-
 from dotenv import load_dotenv
 import allure
-import requests
 from jsonschema import validate
 
 from qa_guru_diploma_altoro_api.utils.api_methods import load_schema, api_request, get_authorization_token, \

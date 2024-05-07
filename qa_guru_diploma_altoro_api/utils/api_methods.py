@@ -3,9 +3,12 @@ from pathlib import Path
 import allure
 import requests
 from dotenv import load_dotenv
+from allure_commons.types import AttachmentType
 
-base_url = 'https://demo.testfire.net/api'
+from qa_guru_diploma_altoro_api.utils.logging_attaching_methods import allure_attaching, logging_info
+
 load_dotenv()
+base_url = os.getenv('BASE_URL')
 username = os.getenv('USER_NAME')
 password = os.getenv('PASSWORD')
 invalid_user_name = os.getenv('INVALID_USER_NAME')
@@ -18,7 +21,9 @@ def load_schema(schema_name):
 def api_request(endpoint, method, data=None, params=None, **kwargs):
     url = base_url + endpoint
     response = requests.request(method, url, data=data, params=params, **kwargs)
-    # response_attaching(response)
+
+    allure_attaching(response)
+    logging_info(response)
 
     return response
 
@@ -39,6 +44,13 @@ def get_authorization_token():
     response_body = response.json()
     with allure.step('Get authorization token from response body'):
         auth_token = response_body['Authorization']
+
+        allure.attach(
+            body=auth_token,
+            name='authorization token',
+            attachment_type=AttachmentType.TEXT,
+            extension='.txt'
+        )
 
     return auth_token
 
