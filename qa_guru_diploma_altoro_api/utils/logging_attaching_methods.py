@@ -6,7 +6,7 @@ import logging
 from allure_commons.types import AttachmentType
 
 
-def allure_attaching(response: Response):
+def response_and_request_attaching(response: Response):
     allure.attach(
         body=response.request.url,
         name='request url',
@@ -44,7 +44,7 @@ def allure_attaching(response: Response):
         )
 
 
-def logging_info(response: Response):
+def response_and_request_logging(response: Response):
     logging.info('Request url: ' + response.request.url)
     if response.request.body:
         logging.info('Request body: ' + str(response.request.body))

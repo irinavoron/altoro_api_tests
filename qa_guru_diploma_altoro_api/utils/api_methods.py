@@ -5,7 +5,7 @@ import requests
 from dotenv import load_dotenv
 from allure_commons.types import AttachmentType
 
-from qa_guru_diploma_altoro_api.utils.logging_attaching_methods import allure_attaching, logging_info
+from qa_guru_diploma_altoro_api.utils.logging_attaching_methods import response_and_request_attaching, response_and_request_logging
 
 load_dotenv()
 base_url = os.getenv('BASE_URL')
@@ -22,8 +22,8 @@ def api_request(endpoint, method, data=None, params=None, **kwargs):
     url = base_url + endpoint
     response = requests.request(method, url, data=data, params=params, **kwargs)
 
-    allure_attaching(response)
-    logging_info(response)
+    response_and_request_attaching(response)
+    response_and_request_logging(response)
 
     return response
 
@@ -39,20 +39,20 @@ def successful_login():
         return response
 
 
-def get_authorization_token():
-    response = successful_login()
-    response_body = response.json()
-    with allure.step('Get authorization token from response body'):
-        auth_token = response_body['Authorization']
-
-        allure.attach(
-            body=auth_token,
-            name='authorization token',
-            attachment_type=AttachmentType.TEXT,
-            extension='.txt'
-        )
-
-    return auth_token
+# def get_authorization_token():
+#     response = successful_login()
+#     response_body = response.json()
+#     with allure.step('Get authorization token from response body'):
+#         auth_token = response_body['Authorization']
+#
+#         allure.attach(
+#             body=auth_token,
+#             name='authorization token',
+#             attachment_type=AttachmentType.TEXT,
+#             extension='.txt'
+#         )
+#
+#     return auth_token
 
 
 def unsuccessful_login():
