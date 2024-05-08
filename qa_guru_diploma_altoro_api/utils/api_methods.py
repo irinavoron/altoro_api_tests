@@ -39,20 +39,20 @@ def successful_login():
         return response
 
 
-# def get_authorization_token():
-#     response = successful_login()
-#     response_body = response.json()
-#     with allure.step('Get authorization token from response body'):
-#         auth_token = response_body['Authorization']
-#
-#         allure.attach(
-#             body=auth_token,
-#             name='authorization token',
-#             attachment_type=AttachmentType.TEXT,
-#             extension='.txt'
-#         )
-#
-#     return auth_token
+def get_authorization_token():
+    response = successful_login()
+    response_body = response.json()
+    with allure.step('Get authorization token from response body'):
+        auth_token = response_body['Authorization']
+
+        allure.attach(
+            body=auth_token,
+            name='authorization token',
+            attachment_type=AttachmentType.TEXT,
+            extension='.txt'
+        )
+
+    return auth_token
 
 
 def unsuccessful_login():
