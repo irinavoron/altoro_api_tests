@@ -1,6 +1,7 @@
 from selene import browser, have
 import allure
 from allure_commons.types import Severity
+import pytest
 from qa_guru_diploma_altoro_api.utils.api_methods import set_auth_cookies
 
 
@@ -10,6 +11,7 @@ from qa_guru_diploma_altoro_api.utils.api_methods import set_auth_cookies
 @allure.story('The user can select English')
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.NORMAL)
+@pytest.mark.ui
 def test_switch_to_english():
     set_auth_cookies()
 
