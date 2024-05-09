@@ -3,13 +3,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import pytest
 
-import config
+from config import config
 from qa_guru_diploma_altoro_api.utils import attach
 
 
 @pytest.fixture(scope='session', autouse=True)
 def browser_management():
-    browser.config.base_url = config.base_url
+    browser.config.base_url = config.BASE_URL
 
     options = Options()
 
@@ -25,7 +25,7 @@ def browser_management():
     options.capabilities.update(selenoid_capabilities)
 
     driver = webdriver.Remote(
-        command_executor=f"https://{config.selenoid_login}:{config.selenoid_password}@{config.selenoid_url}/wd/hub",
+        command_executor=f"https://{config.SELENOID_LOGIN}:{config.SELENOID_PASSWORD}@{config.SELENOID_URL}/wd/hub",
         options=options)
 
     browser.config.driver = driver

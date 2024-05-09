@@ -13,6 +13,7 @@ jsonschema = "^4.22.0"
 pytest = "^8.2.0"
 selene = "2.0.0rc9"
 python-dotenv = "^1.0.1"
+pydantic-settings = "^2.2.1"
 
 
 [tool.poetry.group.dev.dependencies]

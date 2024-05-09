@@ -1,16 +1,11 @@
 import json
-import os
-from dotenv import load_dotenv
 import allure
 from allure_commons.types import Severity
 from jsonschema import validate
 
+from config import config
 from qa_guru_diploma_altoro_api.utils import api_functions
 from qa_guru_diploma_altoro_api.utils.allure_marks import layer, feature
-
-load_dotenv()
-username = os.getenv('USER_NAME')
-password = os.getenv('PASSWORD')
 
 pytestmark = [
     layer('api'),
@@ -43,7 +38,7 @@ def test_successful_login_response_message():
     response_body = response.json()
 
     with allure.step('Check the message in the response body'):
-        assert response_body['success'] == f'{username} is now logged in'
+        assert response_body['success'] == f'{config.USER_NAME} is now logged in'
 
 
 @allure.title('Checking the login request json schema')
@@ -52,7 +47,7 @@ def test_successful_login_response_message():
 @allure.severity(Severity.NORMAL)
 def test_login_request_schema():
     schema = api_functions.load_schema('login_request.json')
-    request_data = {'username': username, 'password': password}
+    request_data = {'username': config.USER_NAME, 'password': config.PASSWORD}
 
     with allure.step('Validate the request json schema'):
         with open(schema) as file:

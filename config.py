@@ -1,13 +1,17 @@
-import os
 from dotenv import load_dotenv
+import pydantic_settings
+
+
+class Config(pydantic_settings.BaseSettings):
+    BASE_URL: str = 'https://demo.testfire.net'
+
+    SELENOID_URL: str = 'selenoid.autotests.cloud'
+    SELENOID_LOGIN: str
+    SELENOID_PASSWORD: str
+
+    USER_NAME: str
+    PASSWORD: str
 
 
 load_dotenv()
-base_url = os.getenv('BASE_URL')
-
-selenoid_url = os.getenv('SELENOID_URL')
-selenoid_login = os.getenv('SELENOID_LOGIN')
-selenoid_password = os.getenv('SELENOID_PASSWORD')
-
-username = os.getenv('USER_NAME')
-password = os.getenv('PASSWORD')
+config = Config()

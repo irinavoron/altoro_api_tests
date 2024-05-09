@@ -5,7 +5,6 @@ from allure_commons.types import Severity
 from qa_guru_diploma_altoro_api.utils.allure_marks import layer, feature
 from qa_guru_diploma_altoro_api.utils.api_functions import set_auth_cookies
 
-
 pytestmark = [
     layer('ui'),
     feature('language')
