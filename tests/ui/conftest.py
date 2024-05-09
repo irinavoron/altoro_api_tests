@@ -17,24 +17,26 @@ selenoid_password = os.getenv('SELENOID_PASSWORD')
 
 @pytest.fixture(scope='session', autouse=True)
 def browser_management():
-    options = Options()
+    browser.config.base_url = base_url
 
-    selenoid_capabilities = {
-        "browserName": "chrome",
-        "browserVersion": "122.0",
-        "selenoid:options": {
-            "enableVideo": True,
-            "enableVNC": True
-        }
-    }
-
-    options.capabilities.update(selenoid_capabilities)
-
-    driver = webdriver.Remote(
-        command_executor=f"https://{selenoid_login}:{selenoid_password}@{selenoid_url}/wd/hub",
-        options=options)
-
-    browser.config.driver = driver
+    # options = Options()
+    #
+    # selenoid_capabilities = {
+    #     "browserName": "chrome",
+    #     "browserVersion": "122.0",
+    #     "selenoid:options": {
+    #         "enableVideo": True,
+    #         "enableVNC": True
+    #     }
+    # }
+    #
+    # options.capabilities.update(selenoid_capabilities)
+    #
+    # driver = webdriver.Remote(
+    #     command_executor=f"https://{selenoid_login}:{selenoid_password}@{selenoid_url}/wd/hub",
+    #     options=options)
+    #
+    # browser.config.driver = driver
 
     yield
 

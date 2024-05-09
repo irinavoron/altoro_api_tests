@@ -97,14 +97,15 @@ def set_auth_cookies():
     url = base_url + "/doLogin"
     payload = {'uid': username, 'passw': password, 'btnSubmit': 'Login'}
 
-    with requests.Session() as session:
-        session.post(url, data=payload)
+    with allure.step('Get authorization cookies'):
+        with requests.Session() as session:
+            session.post(url, data=payload)
 
-        cookie = session.cookies
+            cookie = session.cookies
 
-    browser.open(base_url)
+    with allure.step('Open main page'):
+        browser.open(base_url)
 
-    for cookie_name in ["JSESSIONID", "AltoroAccounts"]:
-        browser.driver.add_cookie({"name": cookie_name, "value": cookie.get(cookie_name)})
-
-
+    with allure.step('Set authorization cookies'):
+        for cookie_name in ["JSESSIONID", "AltoroAccounts"]:
+            browser.driver.add_cookie({"name": cookie_name, "value": cookie.get(cookie_name)})
