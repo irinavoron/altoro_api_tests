@@ -13,7 +13,6 @@ pytestmark = [
 
 
 @allure.title('The language can be switched to English')
-@allure.feature('Language')
 @allure.tag('web')
 @allure.story('The user can select English')
 @allure.label('owner', 'irinaV')
