@@ -5,6 +5,15 @@ import pytest
 from qa_guru_diploma_altoro_api.utils.api_methods import set_auth_cookies
 
 
+def layer(name):
+    return allure.label("layer", name)
+
+
+pytestmark = [
+    layer('ui'),
+]
+
+
 @allure.title('The language can be switched to English')
 @allure.feature('Language')
 @allure.tag('web')
