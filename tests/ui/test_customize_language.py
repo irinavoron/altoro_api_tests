@@ -2,15 +2,13 @@ from selene import browser, have
 import allure
 from allure_commons.types import Severity
 
-from qa_guru_diploma_altoro_api.utils.api_methods import set_auth_cookies
-
-
-def layer(name):
-    return allure.label("layer", name)
+from qa_guru_diploma_altoro_api.utils.allure_marks import layer, feature
+from qa_guru_diploma_altoro_api.utils.api_functions import set_auth_cookies
 
 
 pytestmark = [
     layer('ui'),
+    feature('language')
 ]
 
 

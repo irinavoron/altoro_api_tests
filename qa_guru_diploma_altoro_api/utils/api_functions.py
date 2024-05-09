@@ -4,7 +4,7 @@ import allure
 import requests
 from dotenv import load_dotenv
 from allure_commons.types import AttachmentType
-from selene import browser, have
+from selene import browser
 
 from qa_guru_diploma_altoro_api.utils.logging_attaching_methods import response_and_request_attaching, \
     response_and_request_logging

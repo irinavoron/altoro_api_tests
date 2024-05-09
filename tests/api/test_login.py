@@ -4,26 +4,23 @@ from dotenv import load_dotenv
 import allure
 from jsonschema import validate
 
-from qa_guru_diploma_altoro_api.utils import api_methods
-
+from qa_guru_diploma_altoro_api.utils import api_functions
+from qa_guru_diploma_altoro_api.utils.allure_marks import layer, feature
 
 load_dotenv()
 username = os.getenv('USER_NAME')
 password = os.getenv('PASSWORD')
 
 
-def layer(name):
-    return allure.label("layer", name)
-
-
 pytestmark = [
     layer('api'),
+    feature('login')
 ]
 
 
 def test_login_status_code_and_schema():
-    schema = api_methods.load_schema('successful_login_response.json')
-    response = api_methods.successful_login()
+    schema = api_functions.load_schema('successful_login_response.json')
+    response = api_functions.successful_login()
     response_body = response.json()
 
     with allure.step('Verify the status code'):
@@ -34,7 +31,7 @@ def test_login_status_code_and_schema():
 
 
 def test_successful_login_response_message():
-    response = api_methods.successful_login()
+    response = api_functions.successful_login()
     response_body = response.json()
 
     with allure.step('Check the message in the response body'):
@@ -42,7 +39,7 @@ def test_successful_login_response_message():
 
 
 def test_login_request_schema():
-    schema = api_methods.load_schema('login_request.json')
+    schema = api_functions.load_schema('login_request.json')
     request_data = {'username': username, 'password': password}
 
     with allure.step('Validate the request json schema'):
@@ -75,8 +72,8 @@ def test_login_request_schema():
 
 
 def test_unsuccessful_login_status_code_and_schema():
-    schema = api_methods.load_schema('unsuccessful_login_response.json')
-    response = api_methods.unsuccessful_login()
+    schema = api_functions.load_schema('unsuccessful_login_response.json')
+    response = api_functions.unsuccessful_login()
     response_body = response.json()
 
     with allure.step('Verify the status code'):
@@ -87,7 +84,7 @@ def test_unsuccessful_login_status_code_and_schema():
 
 
 def test_unsuccessful_login_response_body_error_message():
-    response = api_methods.unsuccessful_login()
+    response = api_functions.unsuccessful_login()
     response_body = response.json()
 
     with allure.step('Check the error message in the response body'):

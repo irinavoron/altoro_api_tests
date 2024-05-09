@@ -1,0 +1,5 @@
+INFO     root:logging_attaching_methods.py:48 Request url: https://demo.testfire.net/api/login
+INFO     root:logging_attaching_methods.py:50 Request body: b'{"username": "No Name", "password": "demo1234"}'
+INFO     root:logging_attaching_methods.py:51 Response text: {"error":"We're sorry, but this username or password was not found in our system."}
+INFO     root:logging_attaching_methods.py:52 Response status code:400
+INFO     root:logging_attaching_methods.py:53 response headers: {'Server': 'Apache-Coyote/1.1', 'Content-Type': 'text/plain', 'Content-Length': '83', 'Date': 'Thu, 09 May 2024 15:38:45 GMT', 'Connection': 'close'}
