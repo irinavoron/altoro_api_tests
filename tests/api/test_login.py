@@ -5,12 +5,20 @@ import allure
 from jsonschema import validate
 
 from qa_guru_diploma_altoro_api.utils import api_methods
-# from qa_guru_diploma_altoro_api.utils.api_methods import load_schema, api_request, \
-#     successful_login, unsuccessful_login
+
 
 load_dotenv()
 username = os.getenv('USER_NAME')
 password = os.getenv('PASSWORD')
+
+
+def layer(name):
+    return allure.label("layer", name)
+
+
+pytestmark = [
+    layer('api'),
+]
 
 
 def test_login_status_code_and_schema():
