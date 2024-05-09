@@ -1,5 +1,4 @@
 import os
-
 import allure
 from selene import browser
 from allure_commons.types import AttachmentType
