@@ -3,7 +3,7 @@ import allure
 from allure_commons.types import Severity
 
 from qa_guru_diploma_altoro_api.utils.allure_marks import layer, feature
-from qa_guru_diploma_altoro_api.utils.api_functions import set_auth_cookies
+from qa_guru_diploma_altoro_api.utils import api_functions
 
 pytestmark = [
     layer('ui'),
@@ -17,7 +17,7 @@ pytestmark = [
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.NORMAL)
 def test_switch_to_english():
-    set_auth_cookies()
+    api_functions.set_auth_cookies()
 
     with allure.step('Open Customize Site Language page'):
         browser.open('/bank/customize.jsp')
