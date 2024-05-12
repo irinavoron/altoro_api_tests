@@ -22,11 +22,16 @@ def test_login_status_code_and_schema():
     response = api_functions.successful_login()
     response_body = response.json()
 
-    with allure.step('Verify the status code'):
-        assert response.status_code == 200
-    with allure.step('Validate the response json schema'):
-        with open(schema) as file:
-            validate(response_body, json.loads(file.read()))
+    api_functions.verify_status_code_and_schema(
+        response=response,
+        expected_status_code=200,
+        schema_title='successful_login_response.json'
+    )
+    # with allure.step('Verify the status code'):
+    #     assert response.status_code == 200
+    # with allure.step('Validate the response json schema'):
+    #     with open(schema) as file:
+    #         validate(response_body, json.loads(file.read()))
 
 
 @allure.title('Successful login: Checking the message in the response body')

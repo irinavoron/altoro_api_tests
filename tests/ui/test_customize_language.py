@@ -17,7 +17,7 @@ pytestmark = [
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.NORMAL)
 def test_switch_to_english():
-    api_functions.set_auth_cookies()
+    api_functions.set_auth_cookies_for_ui_tests()
 
     with allure.step('Open Customize Site Language page'):
         browser.open('/bank/customize.jsp')
