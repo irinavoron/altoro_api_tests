@@ -1,9 +1,8 @@
 from qa_guru_diploma_altoro_api.utils import api_functions
 
 
-def test_feedback_status_code_and_schema():
-    auth_token = api_functions.get_authorization_token()
-    headers = {'Authorization': auth_token}
+def test_feedback_status_code_and_schema(authorization_token):
+    headers = {'Authorization': authorization_token}
     payload = {
         'name': "J Smith",
         'email': "jsmtih@altoromutual.com",
