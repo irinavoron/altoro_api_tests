@@ -110,6 +110,7 @@ def add_new_user(auth_token, user: User):
         "password2": user.password2
     }
     json_payload = json.dumps(payload)
+
     with allure.step('Add new user'):
         response = api_request(
             endpoint='/api/admin/addUser',
@@ -117,4 +118,24 @@ def add_new_user(auth_token, user: User):
             data=json_payload,
             headers=headers
         )
+    return response
+
+
+def change_password(auth_token, user: User):
+    headers = {'Authorization': auth_token}
+    payload = {
+        "username": user.username,
+        "password1": user.password1,
+        "password2": user.password2
+    }
+    payload_json = json.dumps(payload)
+
+    with allure.step('Change password'):
+        response = api_request(
+            endpoint='/api/admin/changePassword',
+            method='POST',
+            data=payload_json,
+            headers=headers
+        )
+
     return response
