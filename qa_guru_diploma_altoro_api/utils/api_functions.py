@@ -110,11 +110,11 @@ def add_new_user(auth_token, user: User):
         "password2": user.password2
     }
     json_payload = json.dumps(payload)
-
-    response = api_request(
-        endpoint='/api/admin/addUser',
-        method='POST',
-        data=json_payload,
-        headers=headers
-    )
+    with allure.step('Add new user'):
+        response = api_request(
+            endpoint='/api/admin/addUser',
+            method='POST',
+            data=json_payload,
+            headers=headers
+        )
     return response
