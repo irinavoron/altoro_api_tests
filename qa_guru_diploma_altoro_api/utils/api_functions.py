@@ -8,6 +8,7 @@ from selene import browser
 from jsonschema import validate
 
 from config import config
+from qa_guru_diploma_altoro_api.data.users import User
 from qa_guru_diploma_altoro_api.utils.logging_attaching_methods import response_and_request_attaching, \
     response_and_request_logging
 
@@ -97,3 +98,23 @@ def verify_json_schema(response: Response, schema_title):
     with allure.step('Validate the response json schema'):
         with open(schema) as file:
             validate(response.json(), json.loads(file.read()))
+
+
+def add_new_user(auth_token, user: User):
+    headers = {'Authorization': auth_token}
+    payload = {
+        "firstname": user.firstname,
+        "lastname": user.lastname,
+        "username": user.username,
+        "password1": user.password1,
+        "password2": user.password2
+    }
+    json_payload = json.dumps(payload)
+
+    response = api_request(
+        endpoint='/api/admin/addUser',
+        method='POST',
+        data=json_payload,
+        headers=headers
+    )
+    return response
