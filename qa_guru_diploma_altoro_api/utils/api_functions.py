@@ -3,7 +3,6 @@ from pathlib import Path
 import allure
 import requests
 from requests import Response
-from allure_commons.types import AttachmentType
 from selene import browser
 from jsonschema import validate
 
@@ -15,10 +14,6 @@ from qa_guru_diploma_altoro_api.utils.logging_attaching_methods import response_
 
 def load_schema(schema_name):
     return str(Path(__file__).parent.parent.joinpath(f'schemas/{schema_name}'))
-
-
-# def load_schema(schema_name):
-#     return str(Path(__file__).parent.parent / 'schemas' / schema_name)
 
 
 def api_request(endpoint, method, data=None, params=None, **kwargs):
@@ -40,22 +35,6 @@ def successful_login(user_name, password):
         )
 
         return response
-
-
-# def get_authorization_token():
-#     response = successful_login()
-#     response_body = response.json()
-#     with allure.step('Get authorization token from response body'):
-#         auth_token = response_body['Authorization']
-#
-#         allure.attach(
-#             body=auth_token,
-#             name='authorization token',
-#             attachment_type=AttachmentType.TEXT,
-#             extension='.txt'
-#         )
-#
-#     return auth_token
 
 
 def unsuccessful_login(invalid_user_name):

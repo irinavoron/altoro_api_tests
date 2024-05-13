@@ -45,16 +45,27 @@
 > After run is completed, notifications are sent using the bot in <code>Telegram</code>.
 
 ## Covered Functionality
-#### API tests were designed to check the following scenarios
+#### API tests were designed to check the following points
 
-- [x] Successful login testing
-- [x] Unsuccessful login testing
-- [x] Product can be added to cart
-- [x] Product can be removed from cart
-- [x] User can proceed to checkout from the cart
-- [x] User can proceed shopping from the cart
-- [x] User can open the product description from the inventory page
-- [x] Items number in the cart is displayed on the cart icon
+- [x] Successful login
+  - status code and json schema
+  - message in teh response body
+- [x] Unsuccessful login
+  - status code and json schema
+  - message in the response body
+- [x] Admin: Adding new user
+  - status code and json schema
+  - message in the response body
+  - status code when adding new user with incomplete data
+  - status code when adding new user without authorization token
+- [x] Admin: Changing user`s password
+  - status code and json schema
+  - message in the response body
+  - status code when changing user`s password with incomplete data
+  - status code when changing user`s password without authorization token
+- [x] Submit feedback
+  - status code and json schema
+  - status code when submitting feedback with incomplete data
 
 ## <img src="images/logo/jenkins.svg" width="25" height="25"  alt="Jenkins"/></a> <a target="_blank" href="https://jenkins.autotests.cloud/job/C11-voronirina-diploma-UI/"> Jenkins </a>
 #### Running tests remotely on Jenkins

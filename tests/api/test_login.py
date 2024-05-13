@@ -24,11 +24,6 @@ def test_login_status_code_and_schema():
 
     api_functions.verify_status_code(response=response, expected_status_code=200)
     api_functions.verify_json_schema(response=response, schema_title='successful_login_response.json')
-    # with allure.step('Verify the status code'):
-    #     assert response.status_code == 200
-    # with allure.step('Validate the response json schema'):
-    #     with open(schema) as file:
-    #         validate(response_body, json.loads(file.read()))
 
 
 @allure.title('Successful login: Checking the message in the response body')
@@ -61,18 +56,10 @@ def test_login_request_schema():
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.CRITICAL)
 def test_unsuccessful_login_status_code_and_schema():
-    schema = api_functions.load_schema('unsuccessful_login_response.json')
     response = api_functions.unsuccessful_login('no name')
-    response_body = response.json()
 
     api_functions.verify_status_code(response=response, expected_status_code=400)
     api_functions.verify_json_schema(response=response, schema_title='unsuccessful_login_response.json')
-
-    # with allure.step('Verify the status code'):
-    #     assert response.status_code == 400
-    # with allure.step('Validate the response json schema'):
-    #     with open(schema) as file:
-    #         validate(response_body, json.loads(file.read()))
 
 
 @allure.title('Unsuccessful login: Checking the message in the response body')
