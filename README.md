@@ -108,8 +108,7 @@ pytest "${TEST}"
 </p>
 
 ## <img src="images/logo/telegram.svg" width="25" height="25"  alt="Allure"/></a> Notifications in Telegram
-#### After the test run is completed, a special bot created in <code>Telegram</code> automatically sends a notification with a report
-#### on the run.
+#### After the test run is completed, a special bot created in <code>Telegram</code> automatically sends a notification with a report on the run.
 
 <p align="center">
 <img title="Telegram Notification" src="images/screenshots/telegram.png" >
