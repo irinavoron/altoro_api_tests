@@ -67,7 +67,7 @@
   - status code and json schema
   - status code when submitting feedback with incomplete data
 
-## <img src="images/logo/jenkins.svg" width="25" height="25"  alt="Jenkins"/></a> <a target="_blank" href="https://jenkins.autotests.cloud/job/C11-voronirina-diploma-UI/"> Jenkins </a>
+## <img src="images/logo/jenkins.svg" width="25" height="25"  alt="Jenkins"/></a> <a target="_blank" href="https://jenkins.autotests.cloud/job/C11-voronirina-diploma-altoro-api/"> Jenkins </a>
 #### Running tests remotely on Jenkins
 
 ```
@@ -81,7 +81,7 @@ pytest "${TEST}"
 <img title="Jenkins" src="images/screenshots/jenkins.png">
 </p>
 
-## <img src="images/logo/allure.svg" width="25" height="25"  alt="Allure"/></a> <a target="_blank" href="https://jenkins.autotests.cloud/job/C11-voronirina-diploma-UI/46/allure/">Allure Report</a>
+## <img src="images/logo/allure.svg" width="25" height="25"  alt="Allure"/></a> <a target="_blank" href="https://jenkins.autotests.cloud/job/C11-voronirina-diploma-altoro-api/45/allure/">Allure Report</a>
 
 ####  Overview
 <p align="center">
@@ -94,7 +94,7 @@ pytest "${TEST}"
 <img title="Allure Tests" src="images/screenshots/allure_report_tests.png">
 </p>
 
-## <img src="images/logo/allure_TO.svg" width="25" height="25"  alt="Allure"/></a> <a target="_blank" href="https://allure.autotests.cloud/launch/38541/">TestOps</a>
+## <img src="images/logo/allure_TO.svg" width="25" height="25"  alt="Allure"/></a> <a target="_blank" href="https://allure.autotests.cloud/launch/38956/">TestOps</a>
 ####  Dashboard
 <p align="center">
 <img title="Allure Overview Dashboard" src="images/screenshots/TO_dashboards.png">
@@ -105,7 +105,7 @@ pytest "${TEST}"
 <img title="Allure Test Suites" src="images/screenshots/TO_suites.png">
 </p>
 
-## <img src="images/logo/jira.svg" width="25" height="25"  alt="Allure"/></a> Integration with <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1206">Jira</a>
+## <img src="images/logo/jira.svg" width="25" height="25"  alt="Allure"/></a> Integration with <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1219">Jira</a>
 #### Test cases/launches in TestOps are integrated with tasks in Jira
 <p align="center">
 <img title="Jira" src="images/screenshots/jira.png">
