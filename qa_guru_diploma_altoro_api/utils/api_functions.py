@@ -30,12 +30,12 @@ def api_request(endpoint, method, data=None, params=None, **kwargs):
     return response
 
 
-def successful_login():
+def successful_login(user_name, password):
     with allure.step('Login via API'):
         response = api_request(
             endpoint='/api/login',
             method='POST',
-            json={'username': config.USER_NAME, 'password': config.PASSWORD}
+            json={'username': user_name, 'password': password}
         )
 
         return response

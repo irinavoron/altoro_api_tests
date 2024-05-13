@@ -1,7 +1,7 @@
 from qa_guru_diploma_altoro_api.utils import api_functions
 
 
-def test_feedback_valid_data_status_code_and_schema(authorization_token):
+def test_feedback_valid_data_status_code_and_schema():
     # headers = {'Authorization': authorization_token}
     payload = {
         'name': "J Smith",

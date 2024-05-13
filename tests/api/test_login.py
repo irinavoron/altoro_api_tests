@@ -19,7 +19,7 @@ pytestmark = [
 @allure.severity(Severity.CRITICAL)
 def test_login_status_code_and_schema():
     schema = api_functions.load_schema('successful_login_response.json')
-    response = api_functions.successful_login()
+    response = api_functions.successful_login(config.USER_NAME, config.PASSWORD)
     response_body = response.json()
 
     api_functions.verify_status_code(response=response, expected_status_code=200)
@@ -36,7 +36,7 @@ def test_login_status_code_and_schema():
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.NORMAL)
 def test_successful_login_response_message():
-    response = api_functions.successful_login()
+    response = api_functions.successful_login(config.USER_NAME, config.PASSWORD)
     response_body = response.json()
 
     with allure.step('Check the message in the response body'):

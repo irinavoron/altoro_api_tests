@@ -12,6 +12,9 @@ class Config(pydantic_settings.BaseSettings):
     USER_NAME: str
     PASSWORD: str
 
+    ADMIN_USER_NAME: str
+    ADMIN_PASSWORD: str
+
 
 load_dotenv()
 config = Config()
