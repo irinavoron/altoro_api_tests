@@ -28,16 +28,12 @@
 <a href="https://www.python.com/"><img src="images/logo/python.svg" width="50" height="50"  alt="Python"/></a>
 <a href="https://github.com/"><img src="images/logo/github-2.svg" width="50" height="50"  alt="GitHub"/></a>
 <a href="https://docs.pytest.org/"><img src="images/logo/pytest.svg" width="50" height="50"  alt="Pytest 5"/></a>
-<a href="https://aerokube.com/selenoid/"><img src="images/logo/selenoid.svg" width="50" height="50"  alt="Selenoid"/></a>
 <a href="https://github.com/allure-framework/allure2"><img src="images/logo/allure.svg" width="50" height="50"  alt="Allure"/></a>
 <a href="https://www.jenkins.io/"><img src="images/logo/jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>
 <a href="https://qameta.io/"><img src="images/logo/allure_TO.svg" width="50" height="50"  alt="Allure TestOps"/></a>  
 <a href="https://www.atlassian.com/ru/software/jira/"><img src="images/logo/jira.svg" width="50" height="50"  alt="Jira"/></a>  
 </p>
 
->
-> <code>Selenoid</code> runs browsers in <code>Docker</code> containers.
->
 > <code>Allure Report/Allure TestOps</code> generates reports on the test run results.
 >
 > <code>Jenkins</code> is used to execute tests remotely.
