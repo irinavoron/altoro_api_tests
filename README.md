@@ -45,20 +45,20 @@
 
 - [x] Successful login
   - status code and json schema
-  - message in teh response body
+  - message in the response body
 - [x] Unsuccessful login
   - status code and json schema
   - message in the response body
 - [x] Admin: Adding new user
   - status code and json schema
   - message in the response body
-  - status code when adding new user with incomplete data
-  - status code when adding new user without authorization token
+  - status code when adding a new user with incomplete data
+  - status code when adding a new user without authorization token
 - [x] Admin: Changing user`s password
   - status code and json schema
   - message in the response body
-  - status code when changing user`s password with incomplete data
-  - status code when changing user`s password without authorization token
+  - status code when changing a user`s password with incomplete data
+  - status code when changing a user`s password without authorization token
 - [x] Submit feedback
   - status code and json schema
   - status code when submitting feedback with incomplete data
