@@ -1,4 +1,4 @@
-# <p align="center"> API tests automation project AltoroMutual </p>
+# <p align="center"> API tests automation project AltoroJ REST API </p>
 ### <p align="center"> in <code>Python</code> using <code>Pytest</code> </p>
 <p align="center">
 <img title="AltoroMutual Main Page" src="images/screenshots/altoroMutual.png">
