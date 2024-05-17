@@ -2,9 +2,9 @@ import json
 import allure
 from allure_commons.types import Severity
 
-from qa_guru_diploma_altoro_api.data import users
-from qa_guru_diploma_altoro_api.utils import api_functions
-from qa_guru_diploma_altoro_api.utils.allure_marks import layer, feature
+from altoro_api_tests.data import users
+from altoro_api_tests.utils import api_functions
+from altoro_api_tests.utils.allure_marks import layer, feature
 
 pytestmark = [
     layer('api'),
@@ -14,33 +14,29 @@ pytestmark = [
 add_user_endpoint = '/api/admin/addUser'
 change_password_endpoint = '/api/admin/changePassword'
 method = 'POST'
-success_message = 'Requested operation has completed successfully.'
+key = 'success'
+response_message = 'Requested operation has completed successfully.'
 
 
-@allure.title('Admin: Add new user: Status code and json schema checking')
+@allure.title('Admin: Add new user: Check status code, json schema and response body')
 @allure.tag('web')
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.NORMAL)
-def test_add_new_user_status_code_and_schema(admin_authorization_token):
+def test_add_new_user_response_body(admin_authorization_token):
     response = api_functions.add_new_user(admin_authorization_token, users.bilbo)
 
     api_functions.verify_status_code(response=response, expected_status_code=200)
-    api_functions.verify_json_schema(response, 'admin_success_message_response.json')
+    api_functions.verify_response_json_schema(
+        response=response,
+        schema_title='admin_success_message_response.json'
+    )
+    api_functions.verify_message_in_response_body(
+        response=response,
+        key=key,
+        response_message=response_message)
 
 
-@allure.title('Admin: Add new user: Success message verification')
-@allure.tag('web')
-@allure.label('owner', 'irinaV')
-@allure.severity(Severity.NORMAL)
-def test_add_new_user_success_message(admin_authorization_token):
-    response = api_functions.add_new_user(admin_authorization_token, users.bilbo)
-    response_body = response.json()
-
-    with allure.step('Verify the success message after adding a new user'):
-        assert response_body['success'] == success_message
-
-
-@allure.title('Admin: Add new user with incomplete data: Status code checking')
+@allure.title('Admin: Add new user with incomplete data: Check status code')
 @allure.tag('web')
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.NORMAL)
@@ -64,7 +60,7 @@ def test_add_new_user_incomplete_data_status_code(admin_authorization_token):
     api_functions.verify_status_code(response=response, expected_status_code=400)
 
 
-@allure.title('Admin: Add new user without auth token: Status code checking')
+@allure.title('Admin: Add new user without auth token: Check status code')
 @allure.tag('web')
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.NORMAL)
@@ -88,27 +84,23 @@ def test_add_new_user_without_auth_token_status_code():
     api_functions.verify_status_code(response=response, expected_status_code=401)
 
 
-@allure.title('Admin: Change user`s password: Status code and json schema checking')
+@allure.title('Admin: Change user`s password: Check status code, json schema and response body')
 @allure.tag('web')
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.NORMAL)
-def test_change_password_status_code_and_schema(admin_authorization_token):
+def test_change_password_response_body(admin_authorization_token):
     response = api_functions.change_password(admin_authorization_token, users.jdoe)
 
-    api_functions.verify_status_code(response, 200)
-    api_functions.verify_json_schema(response, 'admin_success_message_response.json')
-
-
-@allure.title('Admin: Change user`s password: Success message verification')
-@allure.tag('web')
-@allure.label('owner', 'irinaV')
-@allure.severity(Severity.NORMAL)
-def test_change_password_success_message(admin_authorization_token):
-    response = api_functions.add_new_user(admin_authorization_token, users.jdoe)
-    response_body = response.json()
-
-    with allure.step('Verify the success message after changing user`s password'):
-        assert response_body['success'] == success_message
+    api_functions.verify_status_code(response=response, expected_status_code=200)
+    api_functions.verify_response_json_schema(
+        response=response,
+        schema_title='admin_success_message_response.json'
+    )
+    api_functions.verify_message_in_response_body(
+        response=response,
+        key=key,
+        response_message=response_message
+    )
 
 
 @allure.title('Admin: Change user`s password without auth token: Status code checking')

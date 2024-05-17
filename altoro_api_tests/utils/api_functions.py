@@ -7,8 +7,8 @@ from selene import browser
 from jsonschema import validate
 
 from config import config
-from qa_guru_diploma_altoro_api.data.users import User
-from qa_guru_diploma_altoro_api.utils.logging_attaching_methods import response_and_request_attaching, \
+from altoro_api_tests.data.users import User
+from altoro_api_tests.utils.logging_attaching_methods import response_and_request_attaching, \
     response_and_request_logging
 
 
@@ -71,12 +71,27 @@ def verify_status_code(response: Response, expected_status_code):
         assert response.status_code == expected_status_code
 
 
-def verify_json_schema(response: Response, schema_title):
+def verify_response_json_schema(response: Response, schema_title):
     schema = load_schema(schema_title)
 
     with allure.step('Validate the response json schema'):
         with open(schema) as file:
             validate(response.json(), json.loads(file.read()))
+
+
+def verify_request_json_schema(schema_title, payload):
+    schema = load_schema(schema_title)
+
+    with allure.step('Validate the response json schema'):
+        with open(schema) as file:
+            validate(payload, json.loads(file.read()))
+
+
+def verify_message_in_response_body(response: Response, key, response_message):
+    response_body = response.json()
+
+    with allure.step('Verify the response body'):
+        assert response_body[key] == response_message
 
 
 def add_new_user(auth_token, user: User):

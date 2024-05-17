@@ -1,11 +1,9 @@
-import json
 import allure
 from allure_commons.types import Severity
-from jsonschema import validate
 
 from config import config
-from qa_guru_diploma_altoro_api.utils import api_functions
-from qa_guru_diploma_altoro_api.utils.allure_marks import layer, feature
+from altoro_api_tests.utils import api_functions
+from altoro_api_tests.utils.allure_marks import layer, feature
 
 pytestmark = [
     layer('api'),
@@ -13,29 +11,23 @@ pytestmark = [
 ]
 
 
-@allure.title('Successful login: Status code and json schema checking')
+@allure.title('Successful login: Check status code, json schema and response body')
 @allure.tag('web')
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.CRITICAL)
-def test_login_status_code_and_schema():
-    schema = api_functions.load_schema('successful_login_response.json')
+def test_login_response_body():
     response = api_functions.successful_login(config.USER_NAME, config.PASSWORD)
-    response_body = response.json()
 
     api_functions.verify_status_code(response=response, expected_status_code=200)
-    api_functions.verify_json_schema(response=response, schema_title='successful_login_response.json')
-
-
-@allure.title('Successful login: Checking the message in the response body')
-@allure.tag('web')
-@allure.label('owner', 'irinaV')
-@allure.severity(Severity.NORMAL)
-def test_successful_login_response_message():
-    response = api_functions.successful_login(config.USER_NAME, config.PASSWORD)
-    response_body = response.json()
-
-    with allure.step('Check the message in the response body'):
-        assert response_body['success'] == f'{config.USER_NAME} is now logged in'
+    api_functions.verify_response_json_schema(
+        response=response,
+        schema_title='successful_login_response.json'
+    )
+    api_functions.verify_message_in_response_body(
+        response=response,
+        key='success',
+        response_message=f'{config.USER_NAME} is now logged in'
+    )
 
 
 @allure.title('Checking the login request json schema')
@@ -43,32 +35,29 @@ def test_successful_login_response_message():
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.NORMAL)
 def test_login_request_schema():
-    schema = api_functions.load_schema('login_request.json')
-    request_data = {'username': config.USER_NAME, 'password': config.PASSWORD}
-
-    with allure.step('Validate the request json schema'):
-        with open(schema) as file:
-            validate(request_data, json.loads(file.read()))
+    api_functions.verify_request_json_schema(
+        schema_title='login_request.json',
+        payload={'username': config.USER_NAME, 'password': config.PASSWORD}
+    )
 
 
-@allure.title('Unsuccessful login: Status code and json schema checking')
+@allure.title('Unsuccessful login: Check status code, json schema and response body')
 @allure.tag('web')
 @allure.label('owner', 'irinaV')
 @allure.severity(Severity.CRITICAL)
-def test_unsuccessful_login_status_code_and_schema():
+def test_unsuccessful_login_response_body():
     response = api_functions.unsuccessful_login('no name')
 
-    api_functions.verify_status_code(response=response, expected_status_code=400)
-    api_functions.verify_json_schema(response=response, schema_title='unsuccessful_login_response.json')
-
-
-@allure.title('Unsuccessful login: Checking the message in the response body')
-@allure.tag('web')
-@allure.label('owner', 'irinaV')
-@allure.severity(Severity.NORMAL)
-def test_unsuccessful_login_response_body_error_message():
-    response = api_functions.unsuccessful_login('no name')
-    response_body = response.json()
-
-    with allure.step('Check the error message in the response body'):
-        assert response_body['error'] == 'We\'re sorry, but this username or password was not found in our system.'
+    api_functions.verify_status_code(
+        response=response,
+        expected_status_code=400
+    )
+    api_functions.verify_response_json_schema(
+        response=response,
+        schema_title='unsuccessful_login_response.json'
+    )
+    api_functions.verify_message_in_response_body(
+        response=response,
+        key='error',
+        response_message='We\'re sorry, but this username or password was not found in our system.'
+    )

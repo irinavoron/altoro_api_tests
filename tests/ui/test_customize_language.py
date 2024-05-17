@@ -2,8 +2,8 @@ from selene import browser, have
 import allure
 from allure_commons.types import Severity
 
-from qa_guru_diploma_altoro_api.utils.allure_marks import layer, feature
-from qa_guru_diploma_altoro_api.utils import api_functions
+from altoro_api_tests.utils.allure_marks import layer, feature
+from altoro_api_tests.utils import api_functions
 
 pytestmark = [
     layer('ui'),

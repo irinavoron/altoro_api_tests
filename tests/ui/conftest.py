@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 import pytest
 
 from config import config
-from qa_guru_diploma_altoro_api.utils import attach
+from altoro_api_tests.utils import attach
 
 
 @pytest.fixture(scope='session', autouse=True)

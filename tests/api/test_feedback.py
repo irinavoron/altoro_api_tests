@@ -1,8 +1,8 @@
 import allure
 from allure_commons.types import Severity
 
-from qa_guru_diploma_altoro_api.utils import api_functions
-from qa_guru_diploma_altoro_api.utils.allure_marks import layer, feature
+from altoro_api_tests.utils import api_functions
+from altoro_api_tests.utils.allure_marks import layer, feature
 
 pytestmark = [
     layer('api'),
@@ -30,7 +30,7 @@ def test_feedback_valid_data_status_code_and_schema():
         )
 
     api_functions.verify_status_code(response=response, expected_status_code=200)
-    api_functions.verify_json_schema(response=response, schema_title='feedback_response.json')
+    api_functions.verify_response_json_schema(response=response, schema_title='feedback_response.json')
 
 
 @allure.title('Feedback with incomplete data: Status code checking')

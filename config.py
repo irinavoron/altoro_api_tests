@@ -3,9 +3,9 @@ import pydantic_settings
 
 
 class Config(pydantic_settings.BaseSettings):
-    BASE_URL: str = 'https://demo.testfire.net'
+    BASE_URL: str
 
-    SELENOID_URL: str = 'selenoid.autotests.cloud'
+    SELENOID_URL: str
     SELENOID_LOGIN: str
     SELENOID_PASSWORD: str
 

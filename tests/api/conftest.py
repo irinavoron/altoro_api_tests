@@ -3,7 +3,7 @@ import allure
 from allure_commons.types import AttachmentType
 
 from config import config
-from qa_guru_diploma_altoro_api.utils import api_functions
+from altoro_api_tests.utils import api_functions
 
 
 @pytest.fixture
